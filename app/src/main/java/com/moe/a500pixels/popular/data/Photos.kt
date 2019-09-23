@@ -1,3 +1,4 @@
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -11,22 +12,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
+@Entity(tableName = "popular")
+data class Photos(
 
-data class Photos (
-
-	@SerializedName("id") val id : Int,
-	@SerializedName("name") val name : String,
-	@SerializedName("description") val description : String,
-	@SerializedName("times_viewed") val times_viewed : Int,
-	@SerializedName("rating") val rating : Double,
-	@SerializedName("created_at") val created_at : String,
-	@SerializedName("category") val category : Int,
-	@SerializedName("privacy") val privacy : Boolean,
-	@SerializedName("width") val width : Int,
-	@SerializedName("height") val height : Int,
-	@SerializedName("votes_count") val votes_count : Int,
-	@SerializedName("comments_count") val comments_count : Int,
-	@SerializedName("nsfw") val nsfw : Boolean,
-	@SerializedName("image_url") val image_url : String,
-	@SerializedName("user") val user : User
-)
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("times_viewed") val times_viewed: Int,
+    @SerializedName("rating") val rating: Double,
+    @SerializedName("created_at") val created_at: String,
+    @SerializedName("category") val category: Int,
+    @SerializedName("privacy") val privacy: Boolean,
+    @SerializedName("width") val width: Int,
+    @SerializedName("height") val height: Int,
+    @SerializedName("votes_count") val votes_count: Int,
+    @SerializedName("comments_count") val comments_count: Int,
+    @SerializedName("nsfw") val nsfw: Boolean,
+    @SerializedName("image_url") val image_url: String,
+    @SerializedName("user") val user: User
+) {
+    override fun toString() = name
+}
