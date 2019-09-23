@@ -1,4 +1,10 @@
+package com.moe.a500pixels.popular.data
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.moe.a500pixels.data.Converters
 
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -11,16 +17,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-
-data class User (
-
-	@SerializedName("id") val id : Int,
-	@SerializedName("username") val username : String,
-	@SerializedName("firstname") val firstname : String,
-	@SerializedName("lastname") val lastname : String,
-	@SerializedName("city") val city : String,
-	@SerializedName("country") val country : String,
-	@SerializedName("fullname") val fullname : String,
-	@SerializedName("userpic_url") val userpic_url : String,
-	@SerializedName("upgrade_status") val upgrade_status : Int
-)
+@Entity(tableName = "user")
+data class User(
+    @PrimaryKey
+    @field:SerializedName("id") val id: Int,
+    @field:SerializedName("username") val username: String,
+    @field:SerializedName("firstname") val firstname: String,
+    @field:SerializedName("lastname") val lastname: String,
+    @field:SerializedName("city") val city: String,
+    @field:SerializedName("country") val country: String,
+    @field:SerializedName("fullname") val fullname: String,
+    @field:SerializedName("userpic_url") val userpic_url: String,
+    @field:SerializedName("upgrade_status") val upgrade_status: Int
+){
+    override fun toString() = username
+}

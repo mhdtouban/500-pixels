@@ -1,3 +1,5 @@
+package com.moe.a500pixels.popular.data
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -12,8 +14,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Filters (
+data class Filters(
 
-	@SerializedName("category") val category : Boolean,
-	@SerializedName("exclude") val exclude : Boolean
+    @field:SerializedName("category") val category: Boolean,
+    @field:SerializedName("exclude") val exclude: Boolean
 )

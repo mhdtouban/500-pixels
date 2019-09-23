@@ -1,3 +1,5 @@
+package com.moe.a500pixels.popular.data
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -19,5 +21,5 @@ data class PopularBaseResponse (
 	@SerializedName("current_page") val current_page : Int,
 	@SerializedName("total_pages") val total_pages : Int,
 	@SerializedName("total_items") val total_items : Int,
-	@SerializedName("photos") val photos : List<Photos>
+	@SerializedName("photos") val photos : List<Photo>
 )
