@@ -22,7 +22,7 @@ import com.moe.a500pixels.util.ioThread
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun popularPhotoDao(): PhotoDao
+    abstract fun photoDao(): PhotoDao
 
 
     companion object {
@@ -46,7 +46,7 @@ abstract class AppDatabase : RoomDatabase() {
                         super.onCreate(db)
                         // insert the data on the IO Thread
                         ioThread {
-                            getInstance(context).popularPhotoDao().insertAll(emptyList())
+                            getInstance(context).photoDao().insertAll(emptyList())
                         }
                     }
                 })

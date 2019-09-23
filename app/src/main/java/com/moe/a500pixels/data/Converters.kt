@@ -19,26 +19,26 @@ class Converters {
         Calendar.getInstance().apply { timeInMillis = value }
 
     @TypeConverter
-    fun fromOptionValue(optionValues: User?): String? {
-        if (optionValues == null) {
+    fun fromUser(user: User?): String? {
+        if (user == null) {
             return null
         }
         val gson = Gson()
         val type = object : TypeToken<User>() {
 
         }.getType()
-        return gson.toJson(optionValues, type)
+        return gson.toJson(user, type)
     }
 
     @TypeConverter
-    fun toOptionValue(optionValuesString: String?): User? {
-        if (optionValuesString == null) {
+    fun toUser(optionValueString: String?): User? {
+        if (optionValueString == null) {
             return null
         }
         val gson = Gson()
         val type = object : TypeToken<User>() {
 
         }.getType()
-        return gson.fromJson<User>(optionValuesString, type)
+        return gson.fromJson<User>(optionValueString, type)
     }
 }
