@@ -28,6 +28,14 @@ class AppModule {
     fun providePhotosRemoteDataSource(photosService: PhotosService) =
         PhotoRemoteDataSource(photosService)
 
+    @PhotoAPI
+    @Provides
+    fun providePrivateOkHttpClient(
+        upstreamClient: OkHttpClient
+    ): OkHttpClient {
+        return upstreamClient.newBuilder().build()
+    }
+
 
     @Singleton
     @Provides
