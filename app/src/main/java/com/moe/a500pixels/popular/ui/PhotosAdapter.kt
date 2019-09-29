@@ -3,6 +3,7 @@ package com.moe.a500pixels.popular.ui
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -82,6 +83,7 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
         ) {
             binding.apply {
                 photo = item
+                title.visibility = if (isGridLayoutManager) View.GONE else View.VISIBLE
                 executePendingBindings()
             }
         }
