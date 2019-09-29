@@ -26,7 +26,7 @@ class Converters {
         val gson = Gson()
         val type = object : TypeToken<User>() {
 
-        }.getType()
+        }.type
         return gson.toJson(user, type)
     }
 
@@ -38,7 +38,20 @@ class Converters {
         val gson = Gson()
         val type = object : TypeToken<User>() {
 
-        }.getType()
+        }.type
         return gson.fromJson<User>(optionValueString, type)
+    }
+
+    @TypeConverter
+    fun fromString(value: String): ArrayList<String> {
+        val listType = object : TypeToken<ArrayList<String>>() {
+
+        }.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun fromArrayList(list: ArrayList<String>): String {
+        return  Gson().toJson(list)
     }
 }

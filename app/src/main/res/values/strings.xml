@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">500pixels</string>
+    <string name="grid">Switch between grid and list</string>
 </resources>

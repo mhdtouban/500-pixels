@@ -31,7 +31,7 @@ data class Photo(
     @field:SerializedName("votes_count") val votes_count: Int,
     @field:SerializedName("comments_count") val comments_count: Int,
     @field:SerializedName("nsfw") val nsfw: Boolean,
-    @field:SerializedName("image_url") val image_url: String,
+    @field:SerializedName("image_url") val image_url: ArrayList<String>,
     @field:SerializedName("user") val user: User
 ) {
     override fun toString() = name
