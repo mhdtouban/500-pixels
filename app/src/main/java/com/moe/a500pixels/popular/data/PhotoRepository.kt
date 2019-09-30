@@ -1,11 +1,8 @@
 package com.moe.a500pixels.popular.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.distinctUntilChanged
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.moe.a500pixels.BuildConfig
-import com.moe.a500pixels.data.resultLiveData
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -42,6 +39,7 @@ class PhotoRepository @Inject constructor(
             photoRemoteDataSource,
             dao, ioCoroutineScope
         )
+
         return LivePagedListBuilder(
             dataSourceFactory,
             PhotoPageDataSourceFactory.pagedListConfig()
@@ -55,10 +53,10 @@ class PhotoRepository @Inject constructor(
         @Volatile
         private var instance: PhotoRepository? = null
 
-        fun getInstance(dao: PhotoDao, legoSetRemoteDataSource: PhotoRemoteDataSource) =
+        fun getInstance(dao: PhotoDao, photoRemoteDataSource: PhotoRemoteDataSource) =
             instance ?: synchronized(this) {
                 instance
-                    ?: PhotoRepository(dao, legoSetRemoteDataSource).also { instance = it }
+                    ?: PhotoRepository(dao, photoRemoteDataSource).also { instance = it }
             }
     }
 }

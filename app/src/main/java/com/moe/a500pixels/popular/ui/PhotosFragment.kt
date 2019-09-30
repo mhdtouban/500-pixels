@@ -1,17 +1,16 @@
 package com.moe.a500pixels.popular.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.*
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.moe.a500pixels.R
 import com.moe.a500pixels.databinding.FragmentPhotosBinding
 import com.moe.a500pixels.di.Injectable
@@ -34,11 +33,13 @@ class PhotosFragment : Fragment(), Injectable {
     private lateinit var gridLayoutManager: GridLayoutManager
     private val linearDecoration: RecyclerView.ItemDecoration by lazy {
         VerticalItemDecoration(
-            resources.getDimension(R.dimen.margin_normal).toInt())
+            resources.getDimension(R.dimen.margin_small).toInt()
+        )
     }
     private val gridDecoration: RecyclerView.ItemDecoration by lazy {
         GridSpacingItemDecoration(
-            SPAN_COUNT, resources.getDimension(R.dimen.margin_grid).toInt())
+            SPAN_COUNT, resources.getDimension(R.dimen.margin_grid).toInt()
+        )
     }
 
     private var isLinearLayoutManager: Boolean = false
@@ -48,11 +49,11 @@ class PhotosFragment : Fragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-          viewModel = injectViewModel(viewModelFactory)
-          viewModel.connectivityAvailable = ConnectivityUtil.isConnected(context!!)
+        viewModel = injectViewModel(viewModelFactory)
+        viewModel.connectivityAvailable = ConnectivityUtil.isConnected(context!!)
 
-         binding = FragmentPhotosBinding.inflate(inflater, container, false)
-         context ?: return binding.root
+        binding = FragmentPhotosBinding.inflate(inflater, container, false)
+        context ?: return binding.root
 
         linearLayoutManager = LinearLayoutManager(activity)
         gridLayoutManager = GridLayoutManager(activity, SPAN_COUNT)
@@ -64,6 +65,7 @@ class PhotosFragment : Fragment(), Injectable {
         setHasOptionsMenu(true)
         return binding.root
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_list_representation, menu)
@@ -107,22 +109,27 @@ class PhotosFragment : Fragment(), Injectable {
 
     private fun subscribeUi(adapter: PhotosAdapter) {
         viewModel.photos.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.visibility = View.GONE
+            binding.swipeRefresh.setOnRefreshListener {
+                binding.progressBar.visibility = View.VISIBLE
+                it.dataSource.invalidate()
+                it.loadedCount
+            }
+            binding.swipeRefresh.isRefreshing = false
             adapter.submitList(it)
-
         })
     }
 
 
     private fun setDataRepresentationIcon(item: MenuItem) {
-        item.setIcon(if (isLinearLayoutManager)
-            R.drawable.ic_grid_list_24dp else R.drawable.ic_list_white_24dp)
+        item.setIcon(
+            if (isLinearLayoutManager)
+                R.drawable.ic_grid_list_24dp else R.drawable.ic_list_white_24dp
+        )
     }
 
     companion object {
         const val SPAN_COUNT = 3
     }
-
 
 
 }

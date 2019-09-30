@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.Target
 import com.moe.a500pixels.databinding.ListItemPhotosBinding
 import com.moe.a500pixels.popular.data.Photo
 
+
 /**
  * Adapter for the [RecyclerView] in [PhotosFragment].
  */
@@ -33,7 +34,20 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
                 bind(photo, isGridLayoutManager())
                 itemView.tag = photo
 
+                holder.binding.title.text = photo.name
+                holder.binding.author.text = photo.user.fullname
+                holder.binding.textComment.text = photo.votes_count.toString()
+                holder.binding.textLike.text = photo.comments_count.toString()
+
+                Glide.with(holder.itemView.context).load(photo.user.userpic_url)
+                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(holder.binding.userPicture)
+
+
                 Glide.with(holder.itemView.context).load(photo.image_url[0])
+                    .fitCenter()
+                    .override(Target.SIZE_ORIGINAL, holder.binding.image.height)
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
@@ -83,7 +97,13 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
         ) {
             binding.apply {
                 photo = item
-                title.visibility = if (isGridLayoutManager) View.GONE else View.VISIBLE
+                if (isGridLayoutManager) {
+                    header.visibility = View.GONE
+                    footer.visibility = View.GONE
+                } else {
+                    header.visibility = View.VISIBLE
+                    footer.visibility = View.VISIBLE
+                }
                 executePendingBindings()
             }
         }
