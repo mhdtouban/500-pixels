@@ -44,7 +44,7 @@ class PhotoPageDataSource @Inject constructor(
     private fun fetchData(page: Int, callback: (List<Photo>) -> Unit) {
         scope.launch(getJobErrorHandler()) {
             val response =
-                dataSource.fetchPhotos(consumerKey = BuildConfig.CONSUMER_KEY, feature = "popular", imageSize = 200,
+                dataSource.fetchPhotos(consumerKey = BuildConfig.CONSUMER_KEY, feature = "popular", imageSize = 20,
                     page = page
                 )
             if (response.status == Status.SUCCESS) {

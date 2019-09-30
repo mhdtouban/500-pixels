@@ -3,6 +3,7 @@ package com.moe.a500pixels.popular.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -33,6 +34,6 @@ data class Photo(
     @field:SerializedName("nsfw") val nsfw: Boolean,
     @field:SerializedName("image_url") val image_url: ArrayList<String>,
     @field:SerializedName("user") val user: User
-) {
+):Serializable {
     override fun toString() = name
 }

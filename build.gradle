@@ -32,6 +32,7 @@ buildscript {
         stetho = '1.5.1'
         timberVersion = '4.7.1'
         daggerVersion = '2.23.2'
+        navigationVersion = '2.0.0'
 
         // Testing dependencies
         junitVersion = '4.12'
@@ -59,6 +60,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
