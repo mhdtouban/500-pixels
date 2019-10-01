@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,7 +32,7 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
         val photo = getItem(position)
         photo?.let {
             holder.apply {
-                bind(photo, isGridLayoutManager())
+                bind(createOnClickListener(photo), photo, isGridLayoutManager())
                 itemView.tag = photo
 
                 holder.binding.title.text = photo.name
@@ -85,6 +86,13 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
         this.recyclerView = recyclerView
     }
 
+    private fun createOnClickListener(photo: Photo): View.OnClickListener {
+        return View.OnClickListener {
+            val direction = PhotosFragmentDirections.actionToPhotoDetailFragment(photo)
+            it.findNavController().navigate(direction)
+        }
+    }
+
 
     private fun isGridLayoutManager() = recyclerView.layoutManager is GridLayoutManager
 
@@ -92,10 +100,12 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
+            listener: View.OnClickListener,
             item: Photo,
             isGridLayoutManager: Boolean
         ) {
             binding.apply {
+                clickListener = listener
                 photo = item
                 if (isGridLayoutManager) {
                     header.visibility = View.GONE

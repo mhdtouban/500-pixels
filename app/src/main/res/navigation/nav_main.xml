@@ -11,17 +11,6 @@
         android:label="@string/popular_photo_title"
         tools:layout="@layout/fragment_photos">
 
-        <argument
-            android:name="id"
-            app:argType="com.moe.a500pixels.popular.data.Photo"
-            android:defaultValue="@null"/>
-
-        <argument
-            android:name="photoName"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null"/>
-
         <action
             android:id="@+id/action_to_photo_detail_fragment"
             app:destination="@id/photo_detail_fragment"
@@ -29,6 +18,7 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
@@ -38,8 +28,10 @@
         tools:layout="@layout/fragment_photo_details">
 
         <argument
-            android:name="id"
-            app:argType="string" />
+            android:name="photo"
+            android:defaultValue="@null"
+            app:argType="com.moe.a500pixels.popular.data.Photo"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

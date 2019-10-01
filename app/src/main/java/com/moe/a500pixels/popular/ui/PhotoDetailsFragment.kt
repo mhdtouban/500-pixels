@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.moe.a500pixels.R
 import com.moe.a500pixels.databinding.FragmentPhotoDetailsBinding
 import com.moe.a500pixels.di.Injectable
@@ -13,7 +14,9 @@ import com.moe.a500pixels.di.Injectable
 /**
  * A fragment representing a single Photo detail screen.
  */
-class PhotoDetailsFragment : Fragment(), Injectable {
+class PhotoDetailsFragment : Fragment() {
+
+    private val args: PhotoDetailsFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -23,6 +26,8 @@ class PhotoDetailsFragment : Fragment(), Injectable {
 
         val binding = DataBindingUtil.inflate<FragmentPhotoDetailsBinding>(
                 inflater, R.layout.fragment_photo_details, container, false)
+
+        args.toBundle()
 
         setHasOptionsMenu(true)
         return binding.root
