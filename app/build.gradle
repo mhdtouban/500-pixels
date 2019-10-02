@@ -111,3 +111,9 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:$rootProject.mockitoAndroidVersion"
 
 }
+// we need all open to run tests which  a we enable only for debug builds.
+project.tasks.whenTaskAdded {
+    if (it.name == "testReleaseUnitTest") {
+        it.enabled = false
+    }
+}
