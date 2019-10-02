@@ -3,6 +3,7 @@ package com.moe.a500pixels.popular.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -27,6 +28,6 @@ data class User(
     @field:SerializedName("fullname") val fullname: String,
     @field:SerializedName("userpic_url") val userpic_url: String,
     @field:SerializedName("upgrade_status") val upgrade_status: Int
-){
+) : Serializable {
     override fun toString() = username
 }

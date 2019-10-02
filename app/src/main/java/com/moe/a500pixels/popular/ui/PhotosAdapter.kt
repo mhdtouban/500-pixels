@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.moe.a500pixels.databinding.ListItemPhotosBinding
 import com.moe.a500pixels.popular.data.Photo
+import kotlinx.android.synthetic.main.layout_photo_header.view.*
 
 
 /**
@@ -29,26 +30,26 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
     private lateinit var recyclerView: RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val photo = getItem(position)
+        var photo = getItem(position)
         photo?.let {
             holder.apply {
                 bind(createOnClickListener(photo), photo, isGridLayoutManager())
                 itemView.tag = photo
 
-                holder.binding.title.text = photo.name
-                holder.binding.author.text = photo.user.fullname
-                holder.binding.textComment.text = photo.votes_count.toString()
-                holder.binding.textLike.text = photo.comments_count.toString()
+                holder.binding.layoutPhoto.title.text = photo.name
+                holder.binding.layoutPhoto.author.text = photo.user.fullname
+                holder.binding.layoutPhoto.text_comment.text = photo.votes_count.toString()
+                holder.binding.layoutPhoto.text_like.text = photo.comments_count.toString()
 
                 Glide.with(holder.itemView.context).load(photo.user.userpic_url)
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                     .apply(RequestOptions.circleCropTransform())
-                    .into(holder.binding.userPicture)
+                    .into(holder.binding.layoutPhoto.user_picture)
 
 
                 Glide.with(holder.itemView.context).load(photo.image_url[0])
                     .fitCenter()
-                    .override(Target.SIZE_ORIGINAL, holder.binding.image.height)
+                    .override(Target.SIZE_ORIGINAL, holder.binding.layoutPhoto.image.height)
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
@@ -63,11 +64,11 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
                             dataSource: DataSource?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            holder.binding.image.animate().alpha(1F).setDuration(250).start()
+                            holder.binding.layoutPhoto.image.animate().alpha(1F).setDuration(250).start()
                             return false
                         }
                     })
-                    .into(holder.binding.image)
+                    .into(holder.binding.layoutPhoto.image)
 
             }
         }
@@ -108,11 +109,11 @@ class PhotosAdapter : PagedListAdapter<Photo, PhotosAdapter.ViewHolder>(PhotoSet
                 clickListener = listener
                 photo = item
                 if (isGridLayoutManager) {
-                    header.visibility = View.GONE
-                    footer.visibility = View.GONE
+                    layoutPhoto.header.visibility = View.GONE
+                    layoutPhoto.footer.visibility = View.GONE
                 } else {
-                    header.visibility = View.VISIBLE
-                    footer.visibility = View.VISIBLE
+                    layoutPhoto.header.visibility = View.VISIBLE
+                    layoutPhoto.footer.visibility = View.VISIBLE
                 }
                 executePendingBindings()
             }

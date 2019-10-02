@@ -3,4 +3,6 @@
     <string name="grid">Switch between grid and list</string>
     <string name="popular_photo_title">Popular Photos</string>
     <string name="photo_details_title">Photo Details</string>
+    <string name="rating">Rating</string>
+    <string name="views">Views</string>
 </resources>

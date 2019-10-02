@@ -34,6 +34,6 @@ data class Photo(
     @field:SerializedName("nsfw") val nsfw: Boolean,
     @field:SerializedName("image_url") val image_url: ArrayList<String>,
     @field:SerializedName("user") val user: User
-):Serializable {
+) : Serializable {
     override fun toString() = name
 }

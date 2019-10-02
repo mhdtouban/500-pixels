@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:sample="http://schemas.android.com/tools"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -17,131 +14,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:onClick="@{clickListener}">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header"
+        <include
+            android:id="@+id/layout_photo"
+            layout="@layout/layout_photo_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/user_picture"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                sample:srcCompat="@tools:sample/avatars[1]" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_picture"
-                sample:text="Human" />
-
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/user_picture"
-                app:layout_constraintStart_toEndOf="@+id/user_picture"
-                app:layout_constraintTop_toTopOf="parent"
-                sample:text="Moe" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/footer"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header"
-            sample:srcCompat="@tools:sample/avatars" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/footer"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image">
-
-            <ImageView
-                android:id="@+id/image_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/ic_like"
-                android:tag="@drawable/ic_like"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="2dp"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/image_like"
-                app:layout_constraintStart_toEndOf="@+id/image_like"
-                app:layout_constraintTop_toTopOf="parent"
-                sample:text="100" />
-
-
-            <ImageView
-                android:id="@+id/image_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:src="@drawable/ic_comment"
-                app:layout_constraintStart_toEndOf="@+id/text_like"
-                app:layout_constraintTop_toTopOf="@+id/image_like"
-                sample:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/text_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toEndOf="@+id/image_comment"
-                app:layout_constraintTop_toTopOf="@+id/image_comment"
-                sample:text="100" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:onClick="@{clickListener}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
