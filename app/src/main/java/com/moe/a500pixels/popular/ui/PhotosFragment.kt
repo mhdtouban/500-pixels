@@ -111,8 +111,7 @@ class PhotosFragment : Fragment(), Injectable {
                 it.dataSource.invalidate()
             }
             binding.swipeRefresh.isRefreshing = false
-            if (adapter.itemCount == 0) binding.progressBar.visibility = View.VISIBLE
-            else binding.progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
             adapter.submitList(it)
         })
     }
