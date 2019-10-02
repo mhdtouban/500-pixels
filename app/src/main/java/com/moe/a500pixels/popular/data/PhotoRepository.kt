@@ -3,6 +3,7 @@ package com.moe.a500pixels.popular.data
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.moe.a500pixels.testing.OpenForTesting
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,6 +12,7 @@ import javax.inject.Singleton
  * Repository module for handling data operations.
  */
 @Singleton
+@OpenForTesting
 class PhotoRepository @Inject constructor(
     private val dao: PhotoDao,
     private val photoRemoteDataSource: PhotoRemoteDataSource

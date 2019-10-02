@@ -23,7 +23,6 @@ class PhotoRepositoryTest {
     private val dao = mock(PhotoDao::class.java)
     private val service = mock(PhotosService::class.java)
     private val remoteDataSource = PhotoRemoteDataSource(service)
-    private val mockRemoteDataSource = spy(remoteDataSource)
 
     @Rule
     @JvmField

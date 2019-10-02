@@ -13,8 +13,10 @@ interface PhotosService {
     }
 
     @GET("photos")
-    suspend fun getPhotos(@Query("consumer_key") key: String,
-                  @Query("feature") feature: String,
-                  @Query("image_size") imageSize: Int,
-                  @Query("page") page: Int) : Response<PopularPhotoBaseResponse<Photo>>
+    suspend fun getPhotos(
+        @Query("consumer_key") key: String? = null,
+        @Query("feature") feature: String? = null,
+        @Query("image_size") imageSize: Int? = null,
+        @Query("page") page: Int? = null
+    ): Response<PopularPhotoBaseResponse<Photo>>
 }
