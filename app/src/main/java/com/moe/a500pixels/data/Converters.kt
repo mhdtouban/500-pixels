@@ -19,7 +19,7 @@ class Converters {
         Calendar.getInstance().apply { timeInMillis = value }
 
     @TypeConverter
-    fun fromUser(user: User?): String? {
+    fun fromUserToString(user: User?): String? {
         if (user == null) {
             return null
         }
@@ -31,7 +31,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun toUser(optionValueString: String?): User? {
+    fun fromStringtoUser(optionValueString: String?): User? {
         if (optionValueString == null) {
             return null
         }
@@ -43,7 +43,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromString(value: String): ArrayList<String> {
+    fun fromStringToArrayList(value: String): ArrayList<String> {
         val listType = object : TypeToken<ArrayList<String>>() {
 
         }.type
@@ -51,7 +51,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromArrayList(list: ArrayList<String>): String {
+    fun fromArrayListToString(list: ArrayList<String>): String {
         return  Gson().toJson(list)
     }
 }
